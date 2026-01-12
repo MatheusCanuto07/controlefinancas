@@ -1,5 +1,5 @@
 import type { PageServerLoad, Actions } from './$types';
-import {auth} from '$lib/auth';
+import {auth} from '$lib/auth.server';
 import { authClient } from '$lib/auth-client';
 import { redirect } from '@sveltejs/kit';
 
@@ -12,7 +12,6 @@ export const actions = {
 		const data = await request.formData();
 		const email = data.get('email')?.toString() || "";
 		const password = data.get('password')?.toString() || "";
-    console.log(email, password);
     try{
       const response = await auth.api.signInEmail({
         body: {

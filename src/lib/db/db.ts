@@ -1,11 +1,11 @@
-import { createClient } from "@libsql/client";
-import { drizzle } from "drizzle-orm/libsql";
-import {configDataBase} from "../config";
-import * as schema from "./schema";
+import { drizzle } from 'drizzle-orm/libsql';
+import { createClient } from '@libsql/client';
+
+console.log('Connecting to database with URL:', process.env.DATABASE_URL);
 
 const client = createClient({
-  url: configDataBase.databaseUrl || "",
-  authToken: configDataBase.authToken
+	url: process.env.DATABASE_URL!,
+	authToken: process.env.DATABASE_AUTH_TOKEN
 });
 
-export const db = drizzle(client, {schema: schema});
+export const db = drizzle(client);

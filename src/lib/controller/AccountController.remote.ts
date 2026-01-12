@@ -7,7 +7,18 @@ import {
   type AccountInsert,
   accountTable
 } from '$lib/db/schema/tables';
-import { eq, lt, gte, ne } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
+
+export const getAccounts = query(async () => {
+	try {
+		console.log('Obtendo todas as contas');
+		const accounts = await db.select().from(accountTable);
+		return accounts;
+	} catch (e) {
+		console.error('Erro ao obter as contas:', e);
+		throw e;
+	}
+});
 
 const validateAccount = v.object({
   id: v.optional(v.number()),
@@ -63,14 +74,3 @@ export const getAccount = query(v.number(), async (idAccount: number) => {
   }
 });
 
-export const getAccounts = query(async () => {
-  try{
-    console.log('Obtendo todas as contas');
-    const accounts = await db.select().from(accountTable);
-    return accounts;
-  }
-  catch(e){
-    console.error('Erro ao obter as contas:', e);
-    throw e;
-  }
-});

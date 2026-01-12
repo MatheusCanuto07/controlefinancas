@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PageProps } from './$types';
-  import { getAccounts } from './AccountController';
+  import { getAccounts } from '$lib/controller/AccountController.remote';
 
   let { data }: PageProps = $props();
 </script>
@@ -9,9 +9,9 @@
 <a href="/home/conta/novo">Nova Conta</a>
 
 <ul>
-  {#each await getAccounts() as account}
+  {#each await getAccounts() as {id, name, balance}}
     <li>
-      <a href={`/home/conta/${account.id}`}>{account.name} - R$ {account.balance?.toFixed(2) ?? '0.00'}</a>
+      <a href={`/home/conta/${id}`}>{name} - R$ {balance?.toFixed(2) ?? '0.00'}</a>
     </li>
   {/each}
 </ul>
