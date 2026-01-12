@@ -5,22 +5,15 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1757273120617,
-      "tag": "0000_early_katie_power",
+      "when": 1768256910806,
+      "tag": "0000_striped_dark_phoenix",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "6",
-      "when": 1757273133942,
-      "tag": "0001_unique_thunderbolt_ross",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1768158901047,
-      "tag": "0002_mushy_onslaught",
+      "when": 1768256990940,
+      "tag": "0001_mixed_the_captain",
       "breakpoints": true
     }
   ]

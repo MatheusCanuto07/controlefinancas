@@ -18,8 +18,7 @@ const validateAccount = v.object({
 		v.maxLength(30, 'O nome deve ter no máximo 30 caracteres')
 	),
   balance: v.pipe(
-    v.number(),
-    v.minValue(0, 'O saldo não pode ser negativo')
+    v.number()
   )
 });
 
@@ -65,7 +64,13 @@ export const getAccount = query(v.number(), async (idAccount: number) => {
 });
 
 export const getAccounts = query(async () => {
-	
-
-	return ;
+  try{
+    console.log('Obtendo todas as contas');
+    const accounts = await db.select().from(accountTable);
+    return accounts;
+  }
+  catch(e){
+    console.error('Erro ao obter as contas:', e);
+    throw e;
+  }
 });

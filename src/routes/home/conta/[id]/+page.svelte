@@ -1,6 +1,6 @@
 <script>
   import AccountForm from '$lib/components/form/AccountForm.svelte';
-  import { getAccount } from '$lib/controller/AccountController';
+  import { getAccount } from '../AccountController';
   import { page } from '$app/state';
 
   let id = parseInt(page.params.id ?? '0');

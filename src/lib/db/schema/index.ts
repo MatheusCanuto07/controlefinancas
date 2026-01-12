@@ -11,7 +11,7 @@ export {
 
 export {
   user,
-  account,
+  userAccount,
   session,
   verification,
 } from "./auth-schema"

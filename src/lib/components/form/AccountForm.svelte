@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { saveAccount } from '$lib/controller/AccountController';
+  import { saveAccount } from '../../../routes/home/conta/AccountController';
   import { type AccountInsert } from '$lib/db/schema/tables';
 
   interface Props {
