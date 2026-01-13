@@ -21,28 +21,29 @@ export const getAccounts = query(async () => {
 });
 
 const validateAccount = v.object({
-  id: v.optional(v.number()),
+  id: v.optional(v.pipe(v.string(), v.transform(Number))),
 	name: v.pipe(
 		v.string(),
 		v.nonEmpty('O nome é obrigatório'),
-		v.minLength(2, 'O nome deve ter pelo menos 2 caracteres'),
+		v.minLength(3, 'O nome deve ter pelo menos 3 caracteres'),
 		v.maxLength(30, 'O nome deve ter no máximo 30 caracteres')
 	),
   balance: v.pipe(
-    v.number()
+    v.number('A conta deve ter um saldo inicial')
   )
 });
 
 export const saveAccount = form(validateAccount, async (data) => {
 	try{
-    if (data.id){
+    const id = data.id ? Number(data.id) : null;
+    
+    if (id !== null){
       await db.update(accountTable).set({
         name: data.name,
-        balance: data.balance
+        balance: data.balance,
       }).where(
-        eq(accountTable.id, data.id)
+        eq(accountTable.id, id)
       );
-      return;
     }
     else{
       await db.insert(accountTable).values({
@@ -51,13 +52,13 @@ export const saveAccount = form(validateAccount, async (data) => {
         idUser: 1
       });
     }
+    throw redirect(303, '/home/conta');
   }
   catch(e){
     console.error('Erro ao salvar a conta:', e);
     throw e;
   }
 
-  throw redirect(303, '/accounts');
 });
 
 export const getAccount = query(v.number(), async (idAccount: number) => {

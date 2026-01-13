@@ -1,7 +1,6 @@
 <script lang="ts">
   import { saveAccount } from '$lib/controller/AccountController.remote';
   import { type AccountInsert } from '$lib/db/schema/tables';
-
   interface Props {
     account: AccountInsert | null;
   }
@@ -19,14 +18,13 @@
 
 <form
   {...saveAccount.enhance(async ({ submit }) => {
+    console.log('Submitting form...');
     await submit();
-
     if (Object.keys(saveAccount.fields.issues).length > 0) {
       console.log('Erro de validação');
-      return;
+      return ;
     }
 
-    alert(account ? 'Conta atualizada com sucesso!' : 'Conta criada com sucesso!');
   })}
 >
   {#if account}
