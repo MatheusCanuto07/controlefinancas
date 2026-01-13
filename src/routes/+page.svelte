@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { PageProps } from './$types';
+  import "../app.css";
 
   // let { data }: PageProps = $props();
 </script>

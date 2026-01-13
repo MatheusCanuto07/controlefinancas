@@ -1,4 +1,4 @@
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from '../$types';
 import { getAccount } from '$lib/controller/AccountController.remote.js';
 
 export const load = (async ({params}) => {

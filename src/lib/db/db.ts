@@ -1,11 +1,12 @@
 import { drizzle } from 'drizzle-orm/libsql';
 import { createClient } from '@libsql/client';
+import { DATABASE_URL, DATABASE_AUTH_TOKEN } from '$env/static/private';
 
-console.log('Connecting to database with URL:', process.env.DATABASE_URL);
+console.log('Connecting to database with URL:', DATABASE_URL);
 
 const client = createClient({
-	url: process.env.DATABASE_URL!,
-	authToken: process.env.DATABASE_AUTH_TOKEN
+	url: DATABASE_URL,
+	authToken: DATABASE_AUTH_TOKEN
 });
 
 export const db = drizzle(client);
